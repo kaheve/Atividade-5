@@ -17,87 +17,39 @@ Os diagramas abaixo foram escritos em **Mermaid**, que o GitHub renderiza automa
 
 ---
 
-# 🎭 1. Diagrama de Casos de Uso
+usecase
+  :Usuário: as U
+  :Sistema Clube do Livro: as S
 
-Representa as funcionalidades disponibilizadas aos atores *Membro* e *Administrador* dentro do sistema.
+  U --> (Criar Conta)
+  U --> (Fazer Login)
+  U --> (Explorar Livros)
+  U --> (Adicionar Livro à Lista)
+  U --> (Ler Resenhas)
+  U --> (Escrever Resenha)
 
-```mermaid
-flowchart LR
-
-actorM((Membro))
-actorA((Administrador))
-
-actorM --- UC1[(Consultar Catálogo)]
-actorM --- UC2[(Solicitar Empréstimo)]
-actorM --- UC3[(Devolver Livro)]
-actorM --- UC4[(Ver Meus Empréstimos)]
-
-actorA --- UC5[(Cadastrar Livro)]
-actorA --- UC6[(Atualizar Livro)]
-actorA --- UC7[(Gerenciar Membros)]
-actorA --- UC8[(Ver Relatórios)]
+flowchart TD
+  A[Início] --> B[Usuário abre o aplicativo]
+  B --> C{Está logado?}
+  C -->|Sim| D[Redirecionar para tela inicial]
+  C -->|Não| E[Exibir tela de login]
+  E --> F[Usuário insere credenciais]
+  F --> G{Credenciais válidas?}
+  G -->|Sim| D
+  G -->|Não| H[Mensagem de erro]
+  H --> E
+  D --> I[Usuário navega pelos livros]
+  I --> J[Fim]
 
 sequenceDiagram
-    autonumber
-    participant M as Membro
-    participant UI as Tela de Empréstimo
-    participant C as Controlador de Empréstimo
-    participant L as Livro
-    participant R as Repositório de Empréstimos
+    participant U as Usuário
+    participant A as Aplicativo
+    participant S as Servidor
 
-    M->>UI: solicitarEmpréstimo(título, idMembro)
-    UI->>C: enviarDados(título, idMembro)
-    C->>R: verificarPendências(idMembro)
-    R-->>C: pendencias = false
-
-    C->>L: verificarDisponibilidade(título)
-    L-->>C: disponível = true
-
-    C->>R: criarEmpréstimo(idMembro, idLivro, data)
-    R-->>C: empréstimoCriado(id)
-
-    C-->>UI: confirmarSucesso(id, dataDevolução)
-    UI-->>M: mostrarMensagem(Sucesso)
-
-    alt Livro indisponível
-        L-->>C: disponível = false
-        C-->>UI: mostrarErro("Livro indisponível")
-        UI-->>M: mostrarMensagem("Indisponível")
-    end
-
-%% Diagrama de Classes - Clube do Livro SJBV
-classDiagram
-
-    class Membro {
-        +int id
-        +String nome
-        +String email
-        +String telefone
-        +verificarPendencias() boolean
-        +obterEmprestimos() List~Emprestimo~
-    }
-
-    class Livro {
-        +int id
-        +String titulo
-        +String autor
-        +String isbn
-        +boolean disponivel
-        +verificarDisponibilidade() boolean
-        +reservar() boolean
-    }
-
-    class Emprestimo {
-        +int id
-        +Date dataEmprestimo
-        +Date dataDevolucaoPrevista
-        +Date dataDevolucaoReal
-        +boolean devolvido
-        +calcularAtraso() int
-    }
-
-    Membro "1" --> "0..*" Emprestimo : possui
-    Livro "1" --> "0..*" Emprestimo : éReferenciadoEm
-    Emprestimo --> Membro : pertenceA
-    Emprestimo --> Livro : referencia
+    U ->> A: Abrir aplicativo
+    A ->> U: Exibir tela inicial
+    U ->> A: Solicita login
+    A ->> S: Enviar credenciais
+    S ->> A: Validar e retornar resultado
+    A ->> U: Login bem-sucedido
 
