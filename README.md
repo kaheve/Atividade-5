@@ -16,4 +16,14 @@ A modelagem visa:
 Os diagramas abaixo foram escritos em **Mermaid**, que o GitHub renderiza automaticamente como imagens.
 
 ---
-<img src="https://drive.google.com/file/d/1JTwhJf712qVeSFq1qaZYMTpVVtkP-q3T/view?usp=drivesdk" alt="Texto Alternativo">
+ ## Diagrama de classes:
+
+https://drive.google.com/file/d/1JTwhJf712qVeSFq1qaZYMTpVVtkP-q3T/view?usp=drivesdk
+
+## Diagrama de Casos de Uso:
+
+https://drive.google.com/file/d/1KPGolO_x8-Qny_mJt51rqUzqMju-ldpk/view?usp=drivesdk
+
+## Diagrama de Sequência:
+
+https://drive.google.com/file/d/1iulW_SzAG5wSv4TtdJLK7WFcb-9_sFzj/view?usp=drivesdk
