@@ -26,7 +26,7 @@ flowchart LR
 classDiagram
 
     class Membro {
-        +int id
+        + id: int
         +String nome
         +String email
         +String telefone
