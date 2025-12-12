@@ -16,3 +16,45 @@ A modelagem visa:
 Os diagramas abaixo foram escritos em **Mermaid**, que o GitHub renderiza automaticamente como imagens.
 
 ---
+
+## Diagrama de Classes
+
+```mermaid
+flowchart LR
+
+%% Diagrama de Classes - Clube do Livro SJBV
+classDiagram
+
+    class Membro {
+        +int id
+        +String nome
+        +String email
+        +String telefone
+        +verificarPendencias() boolean
+        +obterEmprestimos() List~Emprestimo~
+    }
+
+    class Livro {
+        +int id
+        +String titulo
+        +String autor
+        +String isbn
+        +boolean disponivel
+        +verificarDisponibilidade() boolean
+        +reservar() boolean
+    }
+
+    class Emprestimo {
+        +int id
+        +Date dataEmprestimo
+        +Date dataDevolucaoPrevista
+        +Date dataDevolucaoReal
+        +boolean devolvido
+        +calcularAtraso() int
+    }
+
+    Membro "1" --> "0..*" Emprestimo : possui
+    Livro "1" --> "0..*" Emprestimo : éReferenciadoEm
+    Emprestimo --> Membro : pertenceA
+    Emprestimo --> Livro : referencia
+
