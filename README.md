@@ -68,7 +68,6 @@ sequenceDiagram
 %% Diagrama de Classes - Clube do Livro SJBV
 classDiagram
 
-'''mermaid
     class Membro {
         +int id
         +String nome
