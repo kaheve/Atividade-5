@@ -17,6 +17,7 @@ Os diagramas abaixo foram escritos em **Mermaid**, que o GitHub renderiza automa
 
 ---
 
+'''mermaid
 usecase
   :Usuário: as U
   :Sistema Clube do Livro: as S
@@ -28,6 +29,7 @@ usecase
   U --> (Ler Resenhas)
   U --> (Escrever Resenha)
 
+'''mermaid
 flowchart TD
   A[Início] --> B[Usuário abre o aplicativo]
   B --> C{Está logado?}
@@ -41,6 +43,7 @@ flowchart TD
   D --> I[Usuário navega pelos livros]
   I --> J[Fim]
 
+'''mermaid
 sequenceDiagram
     participant U as Usuário
     participant A as Aplicativo
