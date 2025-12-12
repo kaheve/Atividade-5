@@ -16,4 +16,4 @@ A modelagem visa:
 Os diagramas abaixo foram escritos em **Mermaid**, que o GitHub renderiza automaticamente como imagens.
 
 ---
-
+<img src="https://drive.google.com/file/d/1JTwhJf712qVeSFq1qaZYMTpVVtkP-q3T/view?usp=drivesdk" alt="Texto Alternativo">
