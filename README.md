@@ -79,3 +79,37 @@ actorA --- UC7[(Gerenciar Membros)]
 actorA --- UC8[(Ver Relatórios de Empréstimos)]
 
 ---
+
+## Diagrama de Sequência 
+
+```mermaid
+flowchart LR
+%% Diagrama de Sequência - Realizar Empréstimo
+sequenceDiagram
+    autonumber
+    participant M as Membro
+    participant UI as Tela de Empréstimo
+    participant C as Controlador de Empréstimo
+    participant L as Livro
+    participant R as Repositório de Empréstimos
+
+    M->>UI: solicitarEmpréstimo(título, idMembro)
+    UI->>C: enviarDados(título, idMembro)
+    C->>R: verificarPendências(idMembro)
+    R-->>C: pendencias = false
+
+    C->>L: verificarDisponibilidade(título)
+    L-->>C: disponível = true
+
+    C->>R: criarEmpréstimo(idMembro, idLivro, data)
+    R-->>C: empréstimoCriado(id)
+
+    C-->>UI: confirmarSucesso(id, dataDevolução)
+    UI-->>M: mostrarMensagem(Sucesso)
+
+    alt Livro indisponível
+        L-->>C: disponível = false
+        C-->>UI: mostrarErro("Livro indisponível")
+        UI-->>M: mostrarMensagem("Indisponível")
+    end
+
